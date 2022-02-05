@@ -91,6 +91,7 @@ Shader "Shader/Shader_001UVAnimation-Move"
  
             half4 frag (v2f i) : SV_Target
             {
+                
                 // sample the texture
                 half4 texColor = tex2D(_MainTex, i.uv);
                 half4 col = i.color;
