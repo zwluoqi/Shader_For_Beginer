@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Shader001UVAnimationVolume
   m_EditorClassIdentifier: 
   active: 1
+  <displayName>k__BackingField: 
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
@@ -31,7 +32,6 @@ MonoBehaviour:
   m_Name: VolumeProfile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: -6598652291604243860}
   - {fileID: 6069615486973228169}
   - {fileID: 4101248985564620455}
 --- !u!114 &3833373328523167307
@@ -64,11 +64,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa1b4627e847454b81985668a9b0afb, type: 3}
   m_Name: Shader007FogVolume
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   shader007NearFar:
     m_OverrideState: 1
     m_Value: {x: 0.1, y: 10}
@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdecb892b9b514aaab56a1b33388f8c3, type: 3}
   m_Name: Shader002PixelizationVolume
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1

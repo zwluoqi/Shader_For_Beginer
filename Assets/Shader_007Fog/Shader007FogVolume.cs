@@ -17,7 +17,7 @@ public sealed class Shader007FogVolume : VolumeComponent, IPostProcessComponent
     
     public bool IsActive()
     {
-        return intensity.value > 0f;
+        return intensity.overrideState && intensity.value > 0f;
     }
 
     public bool IsTileCompatible()

@@ -97,7 +97,7 @@ Shader "Shader/Shader_001UVAnimation-Move"
                 half4 col = i.color;
                 // apply fog
                 //_Time.
-                float y = saturate(fmod(_Time.y*1.5f,1));
+                float y = saturate(fmod(_Time.y*0.5f,1));
                 //float uy = abs(fmod(i.uv.x+_Time.y*0.01,y)*2.0f-y);               
                 float uy =0;
                 float2 center= float2(0.5f,0.5f);
