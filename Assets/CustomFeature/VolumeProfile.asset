@@ -19,6 +19,26 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
     min: 0
+--- !u!114 &-4613671565199048156
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55cf6a3dd17be4cebb1d6b5191d4f17a, type: 3}
+  m_Name: Shader_008BlurVolume
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  shader008BlurSize:
+    m_OverrideState: 1
+    m_Value: {x: 5.4, y: 4.19}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,6 +54,7 @@ MonoBehaviour:
   components:
   - {fileID: 6069615486973228169}
   - {fileID: 4101248985564620455}
+  - {fileID: -4613671565199048156}
 --- !u!114 &3833373328523167307
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -71,7 +92,7 @@ MonoBehaviour:
     m_Value: 1
   shader007NearFar:
     m_OverrideState: 1
-    m_Value: {x: 0.1, y: 10}
+    m_Value: {x: 1, y: 10}
   shader007FogColor:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}

@@ -39,10 +39,10 @@ MonoBehaviour:
   m_Name: UniversalRenderPipelineAsset_Renderer
   m_EditorClassIdentifier: 
   m_RendererFeatures:
-  - {fileID: 2913898644171553804}
   - {fileID: -1174859315870833320}
   - {fileID: -3535427879003847181}
-  m_RendererFeatureMap: 0c7c56dd603f702858e57548ad0fb2eff385f65613a3efce
+  - {fileID: 8786293087111548501}
+  m_RendererFeatureMap: 58e57548ad0fb2eff385f65613a3efce550ec1cd022fef79
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -82,5 +82,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4e6e943f1c014e93b0987e018c8f9bf, type: 3}
   m_Name: ZoomBlurSRF
+  m_EditorClassIdentifier: 
+  m_Active: 1
+--- !u!114 &8786293087111548501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d307143d6904e6ba0d1e830d7072c6, type: 3}
+  m_Name: Shader008BlurSRF
   m_EditorClassIdentifier: 
   m_Active: 1

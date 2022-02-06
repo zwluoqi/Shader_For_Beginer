@@ -516,13 +516,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4404760024282988913, guid: bf0a225a9ff184f2789f3036faaa9150, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.019999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404760024282988913, guid: bf0a225a9ff184f2789f3036faaa9150, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000000009313226
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404760024282988913, guid: bf0a225a9ff184f2789f3036faaa9150, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.19717477
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404760024282988913, guid: bf0a225a9ff184f2789f3036faaa9150, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9803683
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404760024282988913, guid: bf0a225a9ff184f2789f3036faaa9150, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 202.744
+      objectReference: {fileID: 0}
     - target: {fileID: 4410402899750998667, guid: bf0a225a9ff184f2789f3036faaa9150, type: 3}
       propertyPath: m_Name
       value: Construction Light Low
       objectReference: {fileID: 0}
     - target: {fileID: 4410402899750998667, guid: bf0a225a9ff184f2789f3036faaa9150, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4413105790749080551, guid: bf0a225a9ff184f2789f3036faaa9150, type: 3}
       propertyPath: m_RootOrder
