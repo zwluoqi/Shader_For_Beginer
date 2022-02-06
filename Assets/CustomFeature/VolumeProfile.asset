@@ -38,7 +38,7 @@ MonoBehaviour:
     m_Value: 1
   shader008BlurSize:
     m_OverrideState: 1
-    m_Value: {x: 5.4, y: 4.19}
+    m_Value: {x: 2.83, y: 10}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 6069615486973228169}
   - {fileID: 4101248985564620455}
   - {fileID: -4613671565199048156}
+  - {fileID: 6236106744821627441}
 --- !u!114 &3833373328523167307
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -116,3 +117,23 @@ MonoBehaviour:
   intensity:
     m_OverrideState: 1
     m_Value: 1
+--- !u!114 &6236106744821627441
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27386b47fc6c419ea548e95fe21e85c, type: 3}
+  m_Name: Shader_009BloomVolume
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 3
+  shader009BloomSize:
+    m_OverrideState: 1
+    m_Value: {x: 5.69, y: 3.17, z: 0.4, w: 0.67}

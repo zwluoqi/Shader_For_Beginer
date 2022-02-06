@@ -82,16 +82,17 @@ Shader "Shader/Shader_008Blur"
                   return mainTexColor;
               }
 
+                float4 color = 0;
                 //box平均滤波
                 //和提纲技术一样，框模糊技术使用一个以当前片段为中心的内核/矩阵/窗口。窗口的大小是size * 2 + 1乘以size * 2 + 1。例如，当大小设置为2时，窗口使用(2 * 2 + 1)^2 =每个片段25个样本。
                 for(int i=-size;i<size;i++)
                 {
                     for(int j=-size;j<size;j++)
                     {
-                        mainTexColor += tex2D(_MainTex, input.uv.xy+ _blurSize.y* float2(i,j)/_ScreenParams.xy);
+                        color += tex2D(_MainTex, input.uv.xy+ _blurSize.y* float2(i,j)/_ScreenParams.xy);
                     }
                 }
-                mainTexColor /= pow(size * 2 + 1, 2);
+                color /= pow(size * 2 + 1, 2);
 
                 //Middle Filter
                 //中值过滤器使用所采集样本的中值颜色。通过使用中间值而不是平均值，图像中的边缘被保留了下来——这意味着边缘保持得很好和清晰。例如，看看框中的窗口模糊图像与中值滤波图像。
@@ -99,7 +100,7 @@ Shader "Shader/Shader_008Blur"
 
                 //Kuwahara Filter
                 
-              half4 texColor = mainTexColor;
+              half4 texColor = color;
               return texColor;
               //return float4(0,0,intensity,1);
                             

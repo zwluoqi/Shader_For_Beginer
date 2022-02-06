@@ -8,7 +8,7 @@ public class Shader_008BlurSRF : ScriptableRendererFeature
     class Shader_008BlurPass : ScriptableRenderPass
     {
 
-        public static string k_RenderTag = "Shader007FogPass";
+        public static string k_RenderTag = "Shader_008BlurPass";
 
         private Shader_008BlurVolume volume;
         private RenderTargetIdentifier _renderTargetIdentifier;
