@@ -11,6 +11,8 @@ Tested with : Win DX11, Mac Metal
 | `004Dilation` |  | Dilation |
 | `005FilmGrain` |  | FilmGrain |
 | `007fog` | ![](images/shader007fog.gif) | fog |
+| `008blur` | ![](images/shader008blur.gif) | blur |
+| `009bloom` | ![](images/shader009bloom.gif) | bloom |
 
 
 
