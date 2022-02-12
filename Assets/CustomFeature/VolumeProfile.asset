@@ -19,6 +19,26 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
     min: 0
+--- !u!114 &-5928820824560562913
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9b04dd576db4bf58ce3f436e84d114, type: 3}
+  m_Name: Shader_011MotionBlurVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  _blurSize:
+    m_OverrideState: 1
+    m_Value: {x: 2, y: 0.4}
 --- !u!114 &-4613671565199048156
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -38,7 +58,7 @@ MonoBehaviour:
     m_Value: 1
   shader008BlurSize:
     m_OverrideState: 1
-    m_Value: {x: 2.83, y: 10}
+    m_Value: {x: 2, y: 10}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,6 +76,7 @@ MonoBehaviour:
   - {fileID: 4101248985564620455}
   - {fileID: -4613671565199048156}
   - {fileID: 6236106744821627441}
+  - {fileID: -5928820824560562913}
 --- !u!114 &3833373328523167307
 MonoBehaviour:
   m_ObjectHideFlags: 3
