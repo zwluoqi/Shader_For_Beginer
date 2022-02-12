@@ -48,7 +48,7 @@ Shader "Shader/Shader_011MotionBlur"
             CBUFFER_START(UnityPerMaterial) // Required to be compatible with SRP Batcher
             float4 _MainTex_ST;
             //可调参数有尺寸和分离。大小控制沿着模糊方向取多少样本。增大大小会以牺牲性能为代价增加模糊的数量。分离控制样品沿着模糊方向的分散程度。越来越多的分离增加了模糊的数量，以准确性为代价。
-            float4 _blurSize;
+            float2 _blurSize;
             //运动模糊技术通过比较前一帧的顶点位置和当前帧的顶点位置来确定模糊方向。
             uniform float4x4 previousView2WorldMat;
             CBUFFER_END
@@ -66,9 +66,8 @@ Shader "Shader/Shader_011MotionBlur"
                 return o;
             }
 
-            float4 MotionBlur(float4 sourceColor,float2 uv,float dir)
+            float4 MotionBlur(float4 sourceColor,float2 uv,float2 dir,int size)
             {
-                    int size = int(_blurSize.x);
                   if (size<0)
                   {
                       return sourceColor;
@@ -76,7 +75,8 @@ Shader "Shader/Shader_011MotionBlur"
 
                 float4 color = 0;
 
-                float2 direction = dir*_blurSize.y;
+                float2 direction = abs(dir);
+                // float2 direction = 1/_ScreenParams.xy;
                 float2  forward  = uv;
                 float2  backward = uv;
                 
@@ -90,7 +90,7 @@ Shader "Shader/Shader_011MotionBlur"
                   tex2D(_MainTex, backward);
 
               }
-                color /= (2*size);
+                 color /= (2*2);
                 return color;
             }
 
@@ -134,7 +134,8 @@ Shader "Shader/Shader_011MotionBlur"
                     return mainTexColor;
                 }else
                 {
-                    return MotionBlur(mainTexColor,ndcPos.xy,direction);
+                    //return float4(abs(direction),0.0,1.0);
+                     return  MotionBlur(mainTexColor,ndcPos.xy,direction,int(_blurSize.x));
                 } 
             }
             ENDHLSL
