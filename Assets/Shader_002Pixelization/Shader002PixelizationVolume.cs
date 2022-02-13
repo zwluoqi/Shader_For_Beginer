@@ -14,7 +14,8 @@ public sealed class Shader002PixelizationVolume : VolumeComponent, IPostProcessC
     
     public bool IsActive()
     {
-        return intensity.overrideState && intensity.value > 0f;
+        return intensity.overrideState;
+        
     }
 
     public bool IsTileCompatible()

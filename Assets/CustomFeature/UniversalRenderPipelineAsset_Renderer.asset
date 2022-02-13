@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8913528218476659708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddfd2c566e724da6bbc3ac4422fa44f, type: 3}
+  m_Name: Shader011MotionBlurSRF
+  m_EditorClassIdentifier: 
+  m_Active: 1
 --- !u!114 &-6477884487800890115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,8 +69,10 @@ MonoBehaviour:
   - {fileID: -3535427879003847181}
   - {fileID: 8786293087111548501}
   - {fileID: -6477884487800890115}
-  - {fileID: 7277871204091625884}
-  m_RendererFeatureMap: 58e57548ad0fb2eff385f65613a3efce550ec1cd022fef79fd5c9d3061ee19a69c01ede04c310065
+  - {fileID: 8969860930276791866}
+  - {fileID: -8913528218476659708}
+  - {fileID: 6343813221896410776}
+  m_RendererFeatureMap: 58e57548ad0fb2eff385f65613a3efce550ec1cd022fef79fd5c9d3061ee19a63a96cde1fd587b7c043c47aa4fc94c8498d68fac83c00958
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -99,7 +114,7 @@ MonoBehaviour:
   m_Name: ZoomBlurSRF
   m_EditorClassIdentifier: 
   m_Active: 1
---- !u!114 &7277871204091625884
+--- !u!114 &6343813221896410776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,8 +123,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ddfd2c566e724da6bbc3ac4422fa44f, type: 3}
-  m_Name: Shader011MotionBlurSRF
+  m_Script: {fileID: 11500000, guid: 92c95439c96e78240b5b4613cf9b2ae2, type: 3}
+  m_Name: Shader012ChromaticAberrationSRF
   m_EditorClassIdentifier: 
   m_Active: 1
 --- !u!114 &8786293087111548501
@@ -123,5 +138,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76d307143d6904e6ba0d1e830d7072c6, type: 3}
   m_Name: Shader008BlurSRF
+  m_EditorClassIdentifier: 
+  m_Active: 1
+--- !u!114 &8969860930276791866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d77a5674eda5e4a953c557a0d41bb8, type: 3}
+  m_Name: Shader010SSAOSRF
   m_EditorClassIdentifier: 
   m_Active: 1

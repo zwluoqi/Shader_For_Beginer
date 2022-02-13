@@ -84,7 +84,7 @@ Shader "Shader/Shader_007Fog"
               float4 ndcPos = (input.screenPos / input.screenPos.w);
               float4 mainTexColor = tex2D(_MainTex, input.uv.xy);
 
-             float deviceDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, ndcPos.xy);
+              float deviceDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, ndcPos.xy);
              //float3 colorWorldPos = ComputeWorldSpacePosition(ndcPos.xy, deviceDepth, UNITY_MATRIX_I_VP);
 
               float4 colorWorldPos = ConvertDepth2WorldPos(ndcPos.xy,deviceDepth,unity_MatrixInvVP);

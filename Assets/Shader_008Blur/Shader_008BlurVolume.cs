@@ -16,7 +16,8 @@ public sealed class Shader_008BlurVolume : VolumeComponent, IPostProcessComponen
     
     public bool IsActive()
     {
-        return intensity.overrideState && intensity.value > 0f;
+        return intensity.overrideState;
+        
     }
 
     public bool IsTileCompatible()

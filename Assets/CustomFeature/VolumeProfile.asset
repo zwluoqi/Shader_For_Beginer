@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6787884833207285822
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9b04dd576db4bf58ce3f436e84d114, type: 3}
+  m_Name: Shader_011MotionBlurVolume
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  _blurSize:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 2}
 --- !u!114 &-6598652291604243860
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -19,26 +39,6 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
     min: 0
---- !u!114 &-5928820824560562913
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f9b04dd576db4bf58ce3f436e84d114, type: 3}
-  m_Name: Shader_011MotionBlurVolume
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0
-  _blurSize:
-    m_OverrideState: 1
-    m_Value: {x: 2, y: 0.4}
 --- !u!114 &-4613671565199048156
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -58,7 +58,7 @@ MonoBehaviour:
     m_Value: 1
   shader008BlurSize:
     m_OverrideState: 1
-    m_Value: {x: 2, y: 10}
+    m_Value: {x: 2.83, y: 10}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +76,9 @@ MonoBehaviour:
   - {fileID: 4101248985564620455}
   - {fileID: -4613671565199048156}
   - {fileID: 6236106744821627441}
-  - {fileID: -5928820824560562913}
+  - {fileID: 4996400743907974123}
+  - {fileID: -6787884833207285822}
+  - {fileID: 5600792656436917590}
 --- !u!114 &3833373328523167307
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -121,6 +123,61 @@ MonoBehaviour:
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
+--- !u!114 &4996400743907974123
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1febc6d155f2b941982ef915bbcf590, type: 3}
+  m_Name: Shader_010SSAOVolume
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  radius:
+    m_OverrideState: 1
+    m_Value: 1
+  bias:
+    m_OverrideState: 1
+    m_Value: 0.01
+  magnitude:
+    m_OverrideState: 1
+    m_Value: 1.5
+  contrast:
+    m_OverrideState: 1
+    m_Value: 1.5
+--- !u!114 &5600792656436917590
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782923578e15b6641b17d9693fd1c540, type: 3}
+  m_Name: Shader_012ChromaticAberrationVolume
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  redOffset:
+    m_OverrideState: 1
+    m_Value: 0.01
+  greenOffset:
+    m_OverrideState: 1
+    m_Value: 0.006
+  blueOffset:
+    m_OverrideState: 1
+    m_Value: -0.006
 --- !u!114 &6069615486973228169
 MonoBehaviour:
   m_ObjectHideFlags: 3

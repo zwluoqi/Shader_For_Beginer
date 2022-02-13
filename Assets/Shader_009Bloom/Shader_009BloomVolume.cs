@@ -16,7 +16,8 @@ public sealed class Shader_009BloomVolume : VolumeComponent, IPostProcessCompone
     
     public bool IsActive()
     {
-        return intensity.overrideState && intensity.value > 0f;
+        return intensity.overrideState;
+        
     }
 
     public bool IsTileCompatible()

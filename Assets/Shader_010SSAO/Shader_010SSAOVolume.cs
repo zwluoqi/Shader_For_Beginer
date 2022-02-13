@@ -6,19 +6,20 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 [Serializable]
-public sealed class Shader007FogVolume : VolumeComponent, IPostProcessComponent
+public sealed class Shader_010SSAOVolume : VolumeComponent, IPostProcessComponent
 {
     
     [Tooltip("Select Shader.")]
     public IntParameter intensity = new IntParameter(1);
     
-    public Vector2Parameter shader007NearFar = new Vector2Parameter(new Vector2(0.1f,10f));
-    public ColorParameter shader007FogColor = new ColorParameter(new Color(1.0f,1.0f,1.0f,1.0f));
+    public FloatParameter radius    = new FloatParameter(0.05f);
+    public FloatParameter bias          = new FloatParameter(0.01f);
+    public FloatParameter magnitude     = new FloatParameter(1.5f);
+    public FloatParameter contrast      = new FloatParameter(1.5f);
     
     public bool IsActive()
     {
         return intensity.overrideState;
-        
     }
 
     public bool IsTileCompatible()
