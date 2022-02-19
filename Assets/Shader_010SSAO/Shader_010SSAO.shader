@@ -169,9 +169,9 @@ Shader "Shader/Shader_010SSAO"
             offsetUV      = mul(unity_CameraProjection,offsetUV);
             offsetUV = ComputeScreenPos(offsetUV);
             offsetUV /= offsetUV.w;
-            #if defined(SHADER_API_D3D11)
+            //#if defined(SHADER_API_D3D11)
             offsetUV.x = 1- offsetUV.x;//DX 额外处理，GL和Metal不用处理
-            #endif
+            //#endif
 
             float dd = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, offsetUV.xy);
             float3 cwp = ComputeWorldSpacePosition(offsetUV.xy, dd, UNITY_MATRIX_I_VP);
@@ -196,9 +196,9 @@ Shader "Shader/Shader_010SSAO"
                 offsetUV      = mul(unity_CameraProjection,offsetUV);
                 offsetUV = ComputeScreenPos(offsetUV);
                 offsetUV.xyz /= offsetUV.w;
-                #if defined(SHADER_API_D3D11)
+                //#if defined(SHADER_API_D3D11)
                 offsetUV.x = 1- offsetUV.x;
-                #endif
+                //#endif
     
     
                 float dd = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, offsetUV.xy);

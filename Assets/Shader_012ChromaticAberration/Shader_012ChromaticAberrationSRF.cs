@@ -2,63 +2,31 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using Random = System.Random;
 
-public class Shader_010SSAOSRF : ScriptableRendererFeature
+public class Shader_012ChromaticAberrationSRF : ScriptableRendererFeature
 {
-    class Shader_010SSAOPass : ScriptableRenderPass
+    class Shader_012ChromaticAberrationPass : ScriptableRenderPass
     {
 
-        public static string k_RenderTag = "Shader_010SSAOPass";
+        public static string k_RenderTag = "Shader_012ChromaticAberrationPass";
 
-        private Shader_010SSAOVolume volume;
+        private Shader_012ChromaticAberrationVolume volume;
         private RenderTargetIdentifier _renderTargetIdentifier;
         private Material _material;
 
         private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
         private static readonly int TmpTexId = Shader.PropertyToID("_TmpTex");
-        private static readonly int radius = Shader.PropertyToID("radius");
-        private static readonly int bias = Shader.PropertyToID("bias");
-        private static readonly int magnitude = Shader.PropertyToID("magnitude");
-        private static readonly int contrast = Shader.PropertyToID("contrast");
-        
-        private static readonly int samples = Shader.PropertyToID("samples");
-        private static readonly int noise = Shader.PropertyToID("noises");
-
-        static readonly int SAMPLE_NUM = 16;
-        private Vector4[] sampleVecs = new Vector4[SAMPLE_NUM];
-        private Vector4[] noiseVecs= new Vector4[SAMPLE_NUM];
+        private static readonly int redOffset = Shader.PropertyToID("redOffset");
+        private static readonly int greenOffset = Shader.PropertyToID("greenOffset");
+        private static readonly int blueOffset = Shader.PropertyToID("blueOffset");
+        private static readonly int mouseFocusPoint = Shader.PropertyToID("mouseFocusPoint");
         
         
-        // private RenderTextureDescriptor _cameraTextureDescriptor;
 
-
-        public Shader_010SSAOPass()
+        public Shader_012ChromaticAberrationPass()
         {
-            for (int i = 0; i < SAMPLE_NUM; ++i) {
-                var s = new Vector3(UnityEngine.Random.Range(0.0f,1.0f)*2.0f-1.0f,
-                    UnityEngine.Random.Range(0.0f,1.0f)*2.0f-1.0f,
-                    UnityEngine.Random.Range(0.0f,1.0f));
-                s = s.normalized;
-                
-                float rand = UnityEngine.Random.Range(0.0f,1.0f);
-                s *= rand;
-
-                float scale = (float) i / (float) SAMPLE_NUM;
-                scale = Mathf.Lerp(0.1f, 1.0f, scale * scale);
-                s *= scale;
-                
-                
-                sampleVecs[i] = new Vector4(s.x,s.y,s.z,
-                    1.0f);
-                noiseVecs[i] = new Vector4(UnityEngine.Random.Range(0.0f,1.0f)*2.0f-1.0f,
-                    UnityEngine.Random.Range(0.0f,1.0f)*2.0f-1.0f,
-                    0.0f,
-                    0.0f);
-            }
+            
         }
-        
-        
         
         // This method is called before executing the render pass.
         // It can be used to configure render targets and their clear state. Also to create temporary render target textures.
@@ -74,8 +42,6 @@ public class Shader_010SSAOSRF : ScriptableRendererFeature
         {
             this._renderTargetIdentifier = targetIdentifier;
             
-            //需要存储法线
-            ConfigureInput(ScriptableRenderPassInput.Normal|ScriptableRenderPassInput.Depth|ScriptableRenderPassInput.Color);
         }
 
         // Here you can implement the rendering logic.
@@ -85,12 +51,11 @@ public class Shader_010SSAOSRF : ScriptableRendererFeature
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             var stack = VolumeManager.instance.stack;
-            volume = stack.GetComponent<Shader_010SSAOVolume>();
+            volume = stack.GetComponent<Shader_012ChromaticAberrationVolume>();
             if (!volume.IsActive())
             {
                 return;
             }
-            
 
             if (_material == null)
             {
@@ -100,30 +65,31 @@ public class Shader_010SSAOSRF : ScriptableRendererFeature
                 CreateMaterial(GetShaderName(volume.intensity.value));
             }
             
-            _material.SetFloat(radius,volume.radius.value);
-            _material.SetFloat(bias,volume.bias.value);
-            _material.SetFloat(magnitude,volume.magnitude.value);
-            _material.SetFloat(contrast,volume.contrast.value);
-            
-            _material.SetVectorArray(samples,sampleVecs);
-            _material.SetVectorArray(noise,noiseVecs);
+            _material.SetFloat(redOffset,volume.redOffset.value);
+            _material.SetFloat(greenOffset,volume.greenOffset.value);
+            _material.SetFloat(blueOffset,volume.blueOffset.value);
+            if (Input.GetMouseButton(0))
+            {
+                Rect pixelRect = renderingData.cameraData.camera.pixelRect;
+                float renderScale = renderingData.cameraData.isSceneViewCamera ? 1f :  renderingData.cameraData.renderScale;
+                float scaledCameraWidth = (float)pixelRect.width * renderScale;
+                float scaledCameraHeight = (float)pixelRect.height * renderScale;
+                // float cameraWidth = (float)pixelRect.width;
+                // float cameraHeight = (float)pixelRect.height;
 
-            MaterialEnable("CAMERA_VERTEX", volume.intensity.value == 1);
-            MaterialEnable("CAMERA_NORMAL", volume.intensity.value == 2);
-            MaterialEnable("TANGENT_NOISE", volume.intensity.value == 3);
-            MaterialEnable("CAMERA_SAMPLE_VERTEX", volume.intensity.value == 4);
-            MaterialEnable("OCCLUSION", volume.intensity.value == 5);
-            
-            MaterialEnable("WORLD_VERTEX", volume.intensity.value == 6);
-            MaterialEnable("CAMERA_TANGENT", volume.intensity.value == 7);
-            
+                _material.SetVector(mouseFocusPoint, new Vector4(Input.mousePosition.x/scaledCameraWidth,
+                    Input.mousePosition.y/scaledCameraHeight,1,0));
+            }
+            else
+            {
+                _material.SetVector(mouseFocusPoint, Vector4.zero);
+            }
+
+
+            MaterialEnableKey("CAMERA_VERTEX", volume.intensity.value == 1);
+            MaterialEnableKey("PRE_CAMERA_VERTEX", volume.intensity.value == 2);
 
             var cmd = CommandBufferPool.Get(k_RenderTag);
-
-            
-            context.ExecuteCommandBuffer(cmd);
-            cmd.Clear();
-            
             Render(cmd,ref renderingData);
             
             context.ExecuteCommandBuffer(cmd);
@@ -131,9 +97,9 @@ public class Shader_010SSAOSRF : ScriptableRendererFeature
             CommandBufferPool.Release(cmd);
         }
 
-        private void MaterialEnable(string cameraVertex, bool p1)
+        private void MaterialEnableKey(string cameraVertex, bool b)
         {
-            if (p1)
+            if (b)
             {
                 _material.EnableKeyword(cameraVertex);
             }
@@ -145,7 +111,7 @@ public class Shader_010SSAOSRF : ScriptableRendererFeature
 
         private string GetShaderName(int intensityValue)
         {
-            string shaderName = "Shader/Shader_010SSAO";
+            string shaderName = "Shader/Shader_012ChromaticAberration";
             return shaderName;
         }
 
@@ -166,8 +132,6 @@ public class Shader_010SSAOSRF : ScriptableRendererFeature
             var h = renderingData.cameraData.camera.scaledPixelHeight;
             
             var soruce = _renderTargetIdentifier;
-
-
             cmd.SetGlobalTexture(MainTexId,soruce);
             
             cmd.GetTemporaryRT(TmpTexId,w,h,0,FilterMode.Point, RenderTextureFormat.Default);
@@ -183,12 +147,12 @@ public class Shader_010SSAOSRF : ScriptableRendererFeature
         }
     }
 
-    Shader_010SSAOPass m_ScriptablePass;
+    Shader_012ChromaticAberrationPass m_ScriptablePass;
 
     /// <inheritdoc/>
     public override void Create()
     {
-        m_ScriptablePass = new Shader_010SSAOPass();
+        m_ScriptablePass = new Shader_012ChromaticAberrationPass();
 
         // Configures where the render pass should be injected.
         m_ScriptablePass.renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;

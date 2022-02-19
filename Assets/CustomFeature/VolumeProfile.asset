@@ -59,6 +59,35 @@ MonoBehaviour:
   shader008BlurSize:
     m_OverrideState: 1
     m_Value: {x: 2.83, y: 10}
+--- !u!114 &-1199987125159196473
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9f30a01d5ea48ef98132e1ed279249, type: 3}
+  m_Name: Shader_013SSReflectionVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  maxDistance:
+    m_OverrideState: 1
+    m_Value: 15
+  resolution:
+    m_OverrideState: 1
+    m_Value: 0.3
+  steps:
+    m_OverrideState: 1
+    m_Value: 10
+  thickness:
+    m_OverrideState: 1
+    m_Value: 0.5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +108,7 @@ MonoBehaviour:
   - {fileID: 4996400743907974123}
   - {fileID: -6787884833207285822}
   - {fileID: 5600792656436917590}
+  - {fileID: -1199987125159196473}
 --- !u!114 &3833373328523167307
 MonoBehaviour:
   m_ObjectHideFlags: 3

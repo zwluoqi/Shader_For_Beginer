@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731725, g: 0.1341475, b: 0.12107855, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &57880533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57880532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.22, y: 0.14, z: 1}
+  m_LocalPosition: {x: -0.28, y: 1.28, z: -0.37}
   m_LocalScale: {x: 1, y: 1, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ca: {fileID: 2025378098}
-  cameraPos: {x: -2.370186, y: -0.90999997, z: -2.9846807}
+  cameraPos: {x: 0.39759892, y: 0.23000002, z: -1.293567}
   worldToCameraMatrix:
     e00: 0.99368984
     e01: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
     e32: 0
     e33: 1
   projectionMatrix:
-    e00: 0.9744418
+    e00: 1.0828685
     e01: 0
     e02: 0
     e03: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
     e32: -1
     e33: 0
   invprojectionMatrix:
-    e00: 1.0262285
+    e00: 0.9234732
     e01: 0
     e02: 0
     e03: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
     e32: 3.3323336
     e33: 0.0009998659
   invVPMatrix:
-    e00: 1.019753
+    e00: 0.917646
     e01: 0
     e02: -1.7661366
     e03: -0.11269273
@@ -310,7 +310,7 @@ MonoBehaviour:
     e11: -0.57735026
     e12: 3.49895
     e13: 0.0010498592
-    e20: 0.11510467
+    e20: 0.103579335
     e21: 0
     e22: -5.6649675
     e23: 0.99199015
