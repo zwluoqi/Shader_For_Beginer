@@ -21,6 +21,8 @@ public class Shader_013SSReflectionSRF : ScriptableRendererFeature
         private static readonly int resolution = Shader.PropertyToID("resolution");
         private static readonly int steps = Shader.PropertyToID("steps");
         private static readonly int thickness = Shader.PropertyToID("thickness");
+        private static readonly int roughness = Shader.PropertyToID("roughness");
+
         
         
 
@@ -81,6 +83,8 @@ public class Shader_013SSReflectionSRF : ScriptableRendererFeature
             _material.SetFloat(resolution,volume.resolution.value);
             _material.SetFloat(steps,volume.steps.value);
             _material.SetFloat(thickness,volume.thickness.value);
+            _material.SetFloat(roughness,volume.roughness.value);
+            
             
             MaterialEnable("CAMERA_VERTEX", volume.intensity.value == 1);
             MaterialEnable("CAMERA_NORMAL", volume.intensity.value == 2);

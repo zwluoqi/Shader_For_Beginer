@@ -8,6 +8,7 @@ Shader "Shader/Shader_013SSReflection"
         resolution ("resolution", float) = 0.3
         steps ("steps", float) = 10
         thickness ("thickness", float) = 0.5
+        roughness ("roughness", float) = 0.5
     }
     SubShader
     {
@@ -23,6 +24,17 @@ Shader "Shader/Shader_013SSReflection"
             ZWrite Off
             ZTest LEqual
             Cull Off
+            
+            Stencil
+            {
+                Ref 64        
+//                ReadMask    4
+//                WriteMask   1
+                Comp        Equal
+                Pass        Replace
+                Fail        Keep
+                ZFail       Keep
+            }
             
             HLSLPROGRAM
             #pragma enable_d3d11_debug_symbols
@@ -61,6 +73,7 @@ Shader "Shader/Shader_013SSReflection"
           float resolution;
           float steps ;
           float thickness;
+          float roughness;
             CBUFFER_END
             
             
@@ -175,41 +188,42 @@ Shader "Shader/Shader_013SSReflection"
               float visibility = (hit0);
 
               //逼近更加合理的坐标点,是个优化项
-              // search1 = search0 + ((search1 - search0) / 2);
-              // int iter_steps = int(p_steps*hit0);
-              // for (int i = 0; i < iter_steps; ++i) {
-              //     frag      = lerp(startFrag.xy, endFrag.xy, search1);
-              //     uv.xy      = frag / _ScreenParams.xy;
-              //     float deviceDepth = SAMPLE_DEPTH_TEXTURE_LOD(_CameraDepthTexture, sampler_CameraDepthTexture, uv.xy,0);
-              //     float3 colorWorldPos = ComputeWorldSpacePosition(uv.xy, deviceDepth, UNITY_MATRIX_I_VP);
-              //     viewPathPos = mul(unity_WorldToCamera, float4(colorWorldPos, 1.0)); //TransformWorldToView(UNITY_MATRIX_V,float4(colorWorldPos,1.0));  
-              //
-              //     //注意不要使用直接插值
-              //     viewDistance = (startView.z*endView.z)/lerp(endView.z,startView.z,search1);
-              //
-              //     depth        = viewDistance - viewPathPos.z;
-              //
-              //     //说明物理计算的距离在framebuff后面，即可认为光线撞击了
-              //     if(depth>0 && depth<p_thickness)
-              //     {
-              //         hit1=1;
-              //         //递归,逼近hit0的search0
-              //         search1 = search0 + ((search1 - search0) / 2);
-              //     }else
-              //     {
-              //         //递归,逼近hit0的search1
-              //         float temp = search1;
-              //         search1 = search1 + ((search1 - search0) / 2);
-              //         search0 = temp;
-              //     }
-              // }
-
-                // float alphaFactor = viewPathPos.w;
-                // float hitDepthFactor = (1-clamp(delta/thickness,0,1));
-                // float reflectFactor = (1-max(dot(-unitPositionFrom,pivot),0));
-                // float distanceFactor = (1-clamp(length(viewPathPos.xyz-viewPos)/maxDistance,0,1));
-                // float uvFactor =      (uv.x < 0 || uv.x > 1 ? 0 : 1) * (uv.y < 0 || uv.y > 1 ? 0 : 1);
-                //
+                 search1 = search0 + ((search1 - search0) / 2);
+                int iter_steps = int(p_steps*hit0);
+                for (int i = 0; i < iter_steps; ++i) {
+                    frag      = lerp(startFrag.xy, endFrag.xy, search1);
+                    uv.xy      = frag / _ScreenParams.xy;
+                    float deviceDepth = SAMPLE_DEPTH_TEXTURE_LOD(_CameraDepthTexture, sampler_CameraDepthTexture, uv.xy,0);
+                    float3 colorWorldPos = ComputeWorldSpacePosition(uv.xy, deviceDepth, UNITY_MATRIX_I_VP);
+                    viewPathPos = mul(unity_WorldToCamera, float4(colorWorldPos, 1.0)); //TransformWorldToView(UNITY_MATRIX_V,float4(colorWorldPos,1.0));  
+                
+                    //注意不要使用直接插值
+                    viewDistance = (startView.z*endView.z)/lerp(endView.z,startView.z,search1);
+                
+                    depth        = viewDistance - viewPathPos.z;
+                
+                    //说明物理计算的距离在framebuff后面，即可认为光线撞击了
+                    if(depth>0 && depth<p_thickness)
+                    {
+                        hit1=1;
+                        //递归,逼近hit0的search0
+                        search1 = search0 + ((search1 - search0) / 2);
+                    }else
+                    {
+                        //递归,逼近hit0的search1
+                        float temp = search1;
+                        search1 = search1 + ((search1 - search0) / 2);
+                        search0 = temp;
+                    }
+                }
+                hituv = uv;
+                visibility = (hit1);
+                float alphaFactor = viewPathPos.w;
+                float hitDepthFactor = (1-clamp(depth/p_thickness,0,1));
+                float reflectFactor = (1-max(dot(-unitPositionFrom,pivot),0));
+                float distanceFactor = (1-clamp(length(viewPathPos.xyz-viewPos)/maxDistance,0,1));
+                float uvFactor =      (uv.x < 0 || uv.x > 1 ? 0 : 1) * (uv.y < 0 || uv.y > 1 ? 0 : 1);
+                visibility *= alphaFactor*hitDepthFactor*reflectFactor*distanceFactor*uvFactor;
 
             
               return visibility;
@@ -256,16 +270,18 @@ Shader "Shader/Shader_013SSReflection"
                 hituv);
                 #ifdef HIT_PASS
                 if(rayHit>0){
-                    return float4(1.0,0.0,0.0,1.0);
+                    return float4(rayHit,0.0,0.0,1.0);
                 }else
                 {
-                    return float4(0.0,0.0,1.0,1.0);
+                    return float4(0.0,0.0,0.0,1.0);
                 }
                 #endif
 
-                float4 mainTexColor = tex2D(_MainTex, hituv)*rayHit;
+                float4 rayHitColor = tex2D(_MainTex, hituv)*rayHit;
+                float4 sourceTexColor  = tex2D(_MainTex, ndcPos.xy);
+                float4 mainTexColor = lerp(rayHitColor,sourceTexColor,clamp(roughness,0,1));
 
-              return float4(mainTexColor);    
+                return float4(mainTexColor);    
             }
             ENDHLSL
         }

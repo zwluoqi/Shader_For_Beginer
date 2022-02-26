@@ -16,6 +16,8 @@ public sealed class Shader_013SSReflectionVolume : VolumeComponent, IPostProcess
     public FloatParameter resolution          = new FloatParameter(0.3f);
     public FloatParameter steps     = new FloatParameter(10);
     public FloatParameter thickness      = new FloatParameter(0.5f);
+    public FloatParameter roughness      = new FloatParameter(0.5f);
+
     
     public bool IsActive()
     {

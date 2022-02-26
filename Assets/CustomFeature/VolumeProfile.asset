@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Shader_011MotionBlurVolume
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0
@@ -52,7 +51,6 @@ MonoBehaviour:
   m_Name: Shader_008BlurVolume
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
@@ -72,13 +70,12 @@ MonoBehaviour:
   m_Name: Shader_013SSReflectionVolume
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0
   maxDistance:
     m_OverrideState: 1
-    m_Value: 15
+    m_Value: 16.5
   resolution:
     m_OverrideState: 1
     m_Value: 0.3
@@ -88,6 +85,9 @@ MonoBehaviour:
   thickness:
     m_OverrideState: 1
     m_Value: 0.5
+  roughness:
+    m_OverrideState: 1
+    m_Value: 0.45
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +140,6 @@ MonoBehaviour:
   m_Name: Shader007FogVolume
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
@@ -150,9 +149,6 @@ MonoBehaviour:
   shader007FogColor:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
 --- !u!114 &4996400743907974123
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -166,7 +162,6 @@ MonoBehaviour:
   m_Name: Shader_010SSAOVolume
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0
@@ -195,7 +190,6 @@ MonoBehaviour:
   m_Name: Shader_012ChromaticAberrationVolume
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
@@ -221,7 +215,6 @@ MonoBehaviour:
   m_Name: Shader002PixelizationVolume
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
@@ -238,7 +231,6 @@ MonoBehaviour:
   m_Name: Shader_009BloomVolume
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 3
