@@ -20,13 +20,14 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a951e6a932875264f96115d4e8c0a02d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _lookupTableTexture:
-        m_Texture: {fileID: 2800000, guid: 011f845c7bde48947896452557d3b3b9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7c41d143dc14fb54f90a5ffa1bfd5d4a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _SunRoundFactor: 0.1
     - _amount: 0.1

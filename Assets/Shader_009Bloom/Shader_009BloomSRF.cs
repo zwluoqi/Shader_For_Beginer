@@ -16,6 +16,7 @@ public class Shader_009BloomSRF : ScriptableRendererFeature
 
         private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
         private static readonly int TmpTexId = Shader.PropertyToID("_TmpTex");
+        private static readonly int BlurTexId = Shader.PropertyToID("_BlurTex");
         private static readonly int shader009BloomSize = Shader.PropertyToID("_bloomSize");
         
         // private RenderTextureDescriptor _cameraTextureDescriptor;
@@ -63,23 +64,13 @@ public class Shader_009BloomSRF : ScriptableRendererFeature
                 CreateMaterial(GetShaderName(volume.intensity.value));
             }
             
-            _material.SetVector(shader009BloomSize,volume.shader009BloomSize.value);
-            if (volume.intensity.value == 1)
-            {
-                _material.DisableKeyword("CLIP");
-                _material.EnableKeyword("GRAY");
-            }
-            else if (volume.intensity.value == 2)
-            {
-                _material.DisableKeyword("GRAY");
-                _material.EnableKeyword("CLIP");
-            }
-            else
-            {
-                _material.DisableKeyword("GRAY");
-                _material.DisableKeyword("CLIP");
-                _material.EnableKeyword("_");
-            }
+            _material.SetVector(shader009BloomSize,new Vector4(volume.size.value,volume.seperate.value,
+                volume.threshold.value,volume.amount.value));
+
+            MaterialEnable("GRAY", volume.intensity.value == 1);
+            MaterialEnable("CLIP", volume.intensity.value == 2);
+            MaterialEnable("BLUR", volume.intensity.value == 3);
+
 
             var cmd = CommandBufferPool.Get(k_RenderTag);
             Render(cmd,ref renderingData);
@@ -88,6 +79,19 @@ public class Shader_009BloomSRF : ScriptableRendererFeature
             
             CommandBufferPool.Release(cmd);
         }
+        
+        private void MaterialEnable(string cameraVertex, bool p1)
+        {
+            if (p1)
+            {
+                _material.EnableKeyword(cameraVertex);
+            }
+            else
+            {
+                _material.DisableKeyword(cameraVertex);
+            }
+        }
+
 
         private string GetShaderName(int intensityValue)
         {
@@ -115,9 +119,12 @@ public class Shader_009BloomSRF : ScriptableRendererFeature
             cmd.SetGlobalTexture(MainTexId,soruce);
             
             cmd.GetTemporaryRT(TmpTexId,w,h,0,FilterMode.Point, RenderTextureFormat.Default);
-            
+            cmd.GetTemporaryRT(BlurTexId,w,h,0,FilterMode.Point, RenderTextureFormat.Default);
+
             cmd.Blit(soruce,TmpTexId);
-            cmd.Blit(TmpTexId,soruce,_material,0);
+            cmd.Blit(soruce,BlurTexId,_material,0);
+            cmd.SetGlobalTexture(BlurTexId,BlurTexId);
+            cmd.Blit(TmpTexId,soruce,_material,1);
             
         }
 

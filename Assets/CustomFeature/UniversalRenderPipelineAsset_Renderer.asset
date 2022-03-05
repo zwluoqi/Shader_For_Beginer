@@ -13,6 +13,32 @@ MonoBehaviour:
   m_Name: Shader011MotionBlurSRF
   m_EditorClassIdentifier: 
   m_Active: 1
+--- !u!114 &-8387490664054772912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e21c613254b65b4791e3dfbc682be1f, type: 3}
+  m_Name: Shader_005FilmGrainSRF
+  m_EditorClassIdentifier: 
+  m_Active: 1
+--- !u!114 &-6891065511465615480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222f3aad43a96c842838a5735db92a31, type: 3}
+  m_Name: Shader_014SSRefractionSRF
+  m_EditorClassIdentifier: 
+  m_Active: 1
 --- !u!114 &-6477884487800890115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,6 +63,32 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb2343c3fe1624b1abfac6a9d01495ec, type: 3}
   m_Name: Shader007FogSRF
+  m_EditorClassIdentifier: 
+  m_Active: 1
+--- !u!114 &-2573149815970202590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4524f9056c4cae54da6373ff6c094168, type: 3}
+  m_Name: Shader003SharpenSRF
+  m_EditorClassIdentifier: 
+  m_Active: 1
+--- !u!114 &-2169319501694269329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03b490c658bb824a8c6ba918561c7d3, type: 3}
+  m_Name: Shader_015DepthOfFieldSRF
   m_EditorClassIdentifier: 
   m_Active: 1
 --- !u!114 &-1719183985003364042
@@ -88,7 +140,12 @@ MonoBehaviour:
   - {fileID: -8913528218476659708}
   - {fileID: 6343813221896410776}
   - {fileID: -1719183985003364042}
-  m_RendererFeatureMap: 58e57548ad0fb2eff385f65613a3efce550ec1cd022fef79fd5c9d3061ee19a63a96cde1fd587b7c043c47aa4fc94c8498d68fac83c0095836815536463b24e8
+  - {fileID: -6891065511465615480}
+  - {fileID: -2573149815970202590}
+  - {fileID: 4319430230717969078}
+  - {fileID: -8387490664054772912}
+  - {fileID: -2169319501694269329}
+  m_RendererFeatureMap: 58e57548ad0fb2eff385f65613a3efce550ec1cd022fef79fd5c9d3061ee19a63a96cde1fd587b7c043c47aa4fc94c8498d68fac83c0095836815536463b24e8887f25816d045ea022fc3b21e0554adcb63207d6e8b2f13b502b1c0caea5998b6f882f216807e5e1
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -136,6 +193,19 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4e6e943f1c014e93b0987e018c8f9bf, type: 3}
   m_Name: ZoomBlurSRF
+  m_EditorClassIdentifier: 
+  m_Active: 1
+--- !u!114 &4319430230717969078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467a0ccd3da1e734b9fbcc9a248b48c8, type: 3}
+  m_Name: Shader_004DilationSRF
   m_EditorClassIdentifier: 
   m_Active: 1
 --- !u!114 &6343813221896410776

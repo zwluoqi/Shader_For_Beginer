@@ -16,7 +16,9 @@ public class Shader_008BlurSRF : ScriptableRendererFeature
 
         private static readonly int MainTexId = Shader.PropertyToID("_MainTex");
         private static readonly int TmpTexId = Shader.PropertyToID("_TmpTex");
+        private static readonly int TmpTexId2 = Shader.PropertyToID("_TmpTex2");
         private static readonly int shader008BlurSize = Shader.PropertyToID("_blurSize");
+        private static readonly int shader008BlurOffset = Shader.PropertyToID("_blurOffset");
         
         // private RenderTextureDescriptor _cameraTextureDescriptor;
 
@@ -63,7 +65,7 @@ public class Shader_008BlurSRF : ScriptableRendererFeature
                 CreateMaterial(GetShaderName(volume.intensity.value));
             }
             
-            _material.SetVector(shader008BlurSize,volume.shader008BlurSize.value);
+            _material.SetFloat(shader008BlurSize,volume.size.value);
 
             var cmd = CommandBufferPool.Get(k_RenderTag);
             Render(cmd,ref renderingData);
@@ -98,11 +100,22 @@ public class Shader_008BlurSRF : ScriptableRendererFeature
             var soruce = _renderTargetIdentifier;
             cmd.SetGlobalTexture(MainTexId,soruce);
             
-            cmd.GetTemporaryRT(TmpTexId,w,h,0,FilterMode.Point, RenderTextureFormat.Default);
-            
+            cmd.GetTemporaryRT(TmpTexId,w,h,0,FilterMode.Bilinear, RenderTextureFormat.Default);
+            cmd.GetTemporaryRT(TmpTexId2,w,h,0,FilterMode.Bilinear, RenderTextureFormat.Default);
             cmd.Blit(soruce,TmpTexId);
-            cmd.Blit(TmpTexId,soruce,_material,0);
+
             
+            for (int i = 0; i < volume.iteration.value; i++)
+            {
+                
+                cmd.SetGlobalVector(shader008BlurOffset,volume.radius.value*(new Vector4(1.0f,0.0f)));
+                cmd.Blit(TmpTexId,TmpTexId2,_material,0);
+                
+                cmd.SetGlobalVector(shader008BlurOffset,volume.radius.value*(new Vector4(0.0f,1.0f)));
+                cmd.Blit(TmpTexId2,TmpTexId,_material,0);
+            }
+
+            cmd.Blit(TmpTexId,soruce);
         }
 
         // Cleanup any allocated resources that were created during the execution of this render pass.

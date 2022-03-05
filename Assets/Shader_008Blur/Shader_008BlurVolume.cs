@@ -11,8 +11,11 @@ public sealed class Shader_008BlurVolume : VolumeComponent, IPostProcessComponen
     
     [Tooltip("Select Shader.")]
     public IntParameter intensity = new IntParameter(1);
+    public IntParameter iteration = new IntParameter(1);
     
-    public Vector2Parameter shader008BlurSize = new Vector2Parameter(new Vector2(1.0f,2.0f));
+    public IntParameter size = new IntParameter(3);
+    public IntParameter radius = new IntParameter(2);
+
     
     public bool IsActive()
     {

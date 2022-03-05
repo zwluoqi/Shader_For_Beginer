@@ -22,6 +22,7 @@ Shader "Shader/Shader_008Blur"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile _ BOX GUSSION
             // make fog work
             // #pragma multi_compile_fog
 
@@ -48,9 +49,11 @@ Shader "Shader/Shader_008Blur"
             
             CBUFFER_START(UnityPerMaterial) // Required to be compatible with SRP Batcher
             float4 _MainTex_ST;
+            float4 _MainTex_TexelSize;
             float4 _FogColor;
             //x控制采样size、y控制分离度
-            float2 _blurSize;
+            float _blurSize;
+            float2 _blurOffset;
             CBUFFER_END
 
             v2f vert (appdata v)
@@ -71,34 +74,50 @@ Shader "Shader/Shader_008Blur"
             }
 
 
+            half4 SampleBox(float2 uv){
+                float4 color = 0;
+                float2 offset = _blurOffset*_MainTex_TexelSize.xy;
+                color += 0.2 * tex2D(_MainTex, uv);
+                color += 0.2 * tex2D(_MainTex, uv+offset);
+                color += 0.2 * tex2D(_MainTex, uv-offset);
+                color += 0.2 * tex2D(_MainTex, uv+2*offset);
+                color += 0.2 * tex2D(_MainTex, uv-2*offset);
+                return color;
+            }
+            
+            half4 SampleGussion(float2 uv){
+                half4 color = float4(0, 0, 0, 0);
+                float2 offset = _blurOffset*_MainTex_TexelSize.xy;
+                color += 0.40 * tex2D(_MainTex, uv);
+                color += 0.15 * tex2D(_MainTex, uv+offset);
+                color += 0.15 * tex2D(_MainTex, uv-offset);
+                color += 0.10 * tex2D(_MainTex, uv+2*offset);
+                color += 0.10 * tex2D(_MainTex, uv-2*offset);
+                color += 0.05 * tex2D(_MainTex, uv+3*offset);
+                color += 0.05 * tex2D(_MainTex, uv-3*offset);
+            
+                return color;
+            }
              
             half4 frag (v2f input) : SV_Target
             {
 
               float4 mainTexColor = tex2D(_MainTex, input.uv.xy);
-              int size = int(_blurSize.x);
+              int size = int(_blurSize);
               if (size<=0)
               {
                   return mainTexColor;
               }
 
-                float4 color = 0;
                 //box平均滤波
                 //和提纲技术一样，框模糊技术使用一个以当前片段为中心的内核/矩阵/窗口。窗口的大小是size * 2 + 1乘以size * 2 + 1。例如，当大小设置为2时，窗口使用(2 * 2 + 1)^2 =每个片段25个样本。
-                for(int i=-size;i<size;i++)
-                {
-                    for(int j=-size;j<size;j++)
-                    {
-                        color += tex2D(_MainTex, input.uv.xy+ _blurSize.y* float2(i,j)/_ScreenParams.xy);
-                    }
-                }
-                color /= pow(size * 2 + 1, 2);
-
-                //Middle Filter
-                //中值过滤器使用所采集样本的中值颜色。通过使用中间值而不是平均值，图像中的边缘被保留了下来——这意味着边缘保持得很好和清晰。例如，看看框中的窗口模糊图像与中值滤波图像。
-                //有一种技术可以在线性时间内找到中间值，但在着色器中可能会相当尴尬。下面的数值方法在线性时间内近似中值。它接近中值的程度是可以控制的。
-
-                //Kuwahara Filter
+               
+               #ifdef GUSSION
+               float4 color = SampleGussion(input.uv.xy);
+               #else
+               float4 color = SampleBox(input.uv.xy);
+               #endif
+                
                 
               half4 texColor = color;
               return texColor;
