@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Shader_014SSRefractionVolume
   m_EditorClassIdentifier: 
   active: 0
+  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
   maxDistance:
     m_OverrideState: 1
     m_Value: 15
@@ -50,7 +51,7 @@ MonoBehaviour:
     m_Value: 0
   _blurSize:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 2}
+    m_Value: {x: 0.84, y: 2}
 --- !u!114 &-6598652291604243860
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -83,6 +84,7 @@ MonoBehaviour:
   m_Name: Shader_003SharpenVolume
   m_EditorClassIdentifier: 
   active: 0
+  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
@@ -125,6 +127,7 @@ MonoBehaviour:
   m_Name: Shader_015DepthOfFieldVolume
   m_EditorClassIdentifier: 
   active: 0
+  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
@@ -156,19 +159,19 @@ MonoBehaviour:
     m_Value: 0
   maxDistance:
     m_OverrideState: 1
-    m_Value: 16.5
+    m_Value: 10
   resolution:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 0.1
   steps:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 200.1
   thickness:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.54
   roughness:
     m_OverrideState: 1
-    m_Value: 0.45
+    m_Value: 0.54
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +199,7 @@ MonoBehaviour:
   - {fileID: 2089646683264361061}
   - {fileID: -1353124051368504475}
   - {fileID: 3292157566628755053}
+  - {fileID: 5375557209677470069}
 --- !u!114 &2089646683264361061
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -209,6 +213,7 @@ MonoBehaviour:
   m_Name: Shader_005FilmGrainVolume
   m_EditorClassIdentifier: 
   active: 0
+  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
@@ -225,12 +230,15 @@ MonoBehaviour:
   m_Name: ColorLookup
   m_EditorClassIdentifier: 
   active: 0
+  m_AdvancedMode: 0
   texture:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 7c41d143dc14fb54f90a5ffa1bfd5d4a, type: 3}
   contribution:
     m_OverrideState: 1
     m_Value: 1
+    min: 0
+    max: 1
 --- !u!114 &3664216123366743926
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -244,6 +252,7 @@ MonoBehaviour:
   m_Name: Shader_004DilationVolume
   m_EditorClassIdentifier: 
   active: 0
+  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
@@ -277,14 +286,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa1b4627e847454b81985668a9b0afb, type: 3}
   m_Name: Shader007FogVolume
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
   shader007NearFar:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 10}
+    m_Value: {x: 1.11, y: 9.97}
   shader007FogColor:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -320,6 +329,32 @@ MonoBehaviour:
   contrast:
     m_OverrideState: 1
     m_Value: 1.5
+--- !u!114 &5375557209677470069
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1c11c0aaa2b4d009c04b9520309006, type: 3}
+  m_Name: Shader_016RayMarchVolume
+  m_EditorClassIdentifier: 
+  active: 0
+  m_AdvancedMode: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  shader008BlurSize:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 2}
+  minDistance:
+    m_OverrideState: 1
+    m_Value: 1
+  maxDistance:
+    m_OverrideState: 1
+    m_Value: 3
 --- !u!114 &5600792656436917590
 MonoBehaviour:
   m_ObjectHideFlags: 3

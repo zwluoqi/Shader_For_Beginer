@@ -104,9 +104,9 @@ Shader "Shader/Shader_007Fog"
                   , fogMax
                   );
 
-              //float4 fragColor = float4(_FogColor.rgb, intensity);
+              float4 fragColor = float4(_FogColor.rgb, min(intensity, 1));
 
-              float4 fragColor = lerp(mainTexColor, _FogColor, min(intensity, 1));
+              //float4 fragColor = lerp(mainTexColor, _FogColor, min(intensity, 1));
                 
               half4 texColor = fragColor;
               return texColor;
