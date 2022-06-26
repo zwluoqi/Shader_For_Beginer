@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa1b4627e847454b81985668a9b0afb, type: 3}
   m_Name: Shader007FogVolume
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1febc6d155f2b941982ef915bbcf590, type: 3}
   m_Name: Shader_010SSAOVolume
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1

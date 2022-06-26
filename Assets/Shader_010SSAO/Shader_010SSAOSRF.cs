@@ -119,7 +119,7 @@ public class Shader_010SSAOSRF : ScriptableRendererFeature
             
 
             var cmd = CommandBufferPool.Get(k_RenderTag);
-
+            
             
             context.ExecuteCommandBuffer(cmd);
             cmd.Clear();

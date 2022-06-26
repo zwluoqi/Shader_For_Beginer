@@ -115,8 +115,10 @@ public class Shader_015DepthOfFieldSRF : ScriptableRendererFeature
             
             cmd.Blit(soruce,BlurTexId);
             //cmd.Blit(TmpTexId,soruce,_material,0);
+            
             cmd.Blit(BlurTexId,TmpTexId,_material,1);
             cmd.Blit(TmpTexId,BlurTexId,_material,2);
+            
             cmd.SetGlobalTexture(BlurTexId, BlurTexId);
             cmd.Blit(soruce,TmpTexId,_material,3);
             cmd.Blit(TmpTexId,soruce);

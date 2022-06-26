@@ -1,0 +1,1 @@
+1.通过fmod获取当前pixel应该获取的采样点。使得当前pixel和周围pixel使用一个uv采样。

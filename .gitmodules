@@ -1,0 +1,3 @@
+[submodule "Assets/ShaderLabs"]
+	path = Assets/ShaderLabs
+	url = git@github.com:zwluoqi/ShaderLabs.git
