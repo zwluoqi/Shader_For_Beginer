@@ -5,7 +5,7 @@ namespace Shader_010PlanerReflection
     public class CameraUtils
     {
 
-        public void ReflectionCamera(Camera target, Camera source, Transform plane)
+        public static void ReflectionCamera(Camera target, Camera source, Transform plane)
         {
             ReflectionTransform(target.transform,source.transform,plane);
             
@@ -21,7 +21,7 @@ namespace Shader_010PlanerReflection
             target.projectionMatrix = target.CalculateObliqueMatrix(viewplane);
         }
 
-        private Vector4 CameraSpacePlane(Matrix4x4 targetWorldToCameraMatrix, Vector3 planePosition, Vector3 planeUp)
+        private static  Vector4 CameraSpacePlane(Matrix4x4 targetWorldToCameraMatrix, Vector3 planePosition, Vector3 planeUp)
         {
             var planeOffset = 0;
             Vector3 offsetPos = planePosition + planeUp * planeOffset;
@@ -31,7 +31,7 @@ namespace Shader_010PlanerReflection
             return new Vector4(cnormal.x, cnormal.y, cnormal.z, d);
         }
 
-        void ReflectionTransform(Transform target,Transform source,Transform plane)
+        static  void ReflectionTransform(Transform target,Transform source,Transform plane)
         {
             var forward = source.forward;
             var up = source.up;
